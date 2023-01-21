@@ -26,11 +26,11 @@ def generate_launch_description():
     usb2Mode     = LaunchConfiguration('usb2Mode',  default = False)
     poeMode      = LaunchConfiguration('poeMode',   default = False)
 
-    camera_model = LaunchConfiguration('camera_model',  default = 'OAK-D')
+    camera_model = LaunchConfiguration('camera_model',  default = 'OAK-D-PRO')
     tf_prefix    = LaunchConfiguration('tf_prefix',     default = 'oak')
     mode         = LaunchConfiguration('mode', default = 'depth')
-    base_frame   = LaunchConfiguration('base_frame',    default = 'oak-d_frame')
-    parent_frame = LaunchConfiguration('parent_frame',  default = 'oak-d-base-frame')
+    base_frame   = LaunchConfiguration('base_frame',    default = 'camera_link')
+    parent_frame = LaunchConfiguration('parent_frame',  default = 'chassis')
     imuMode      = LaunchConfiguration('imuMode', default = '1')
 
     cam_pos_x    = LaunchConfiguration('cam_pos_x',     default = '0.0')
@@ -75,7 +75,7 @@ def generate_launch_description():
     enableFloodLight   = LaunchConfiguration('enableFloodLight', default = False)
     dotProjectormA     = LaunchConfiguration('dotProjectormA', default = 900.0)
     floodLightmA       = LaunchConfiguration('floodLightmA', default = 200.0)
-    enableRviz         = LaunchConfiguration('enableRviz', default = True)
+    enableRviz         = LaunchConfiguration('enableRviz', default = False)
 
 
     declare_mxId_cmd = DeclareLaunchArgument(
@@ -476,7 +476,7 @@ def generate_launch_description():
 
     ld.add_action(declare_enableRviz_cmd)
 
-    ld.add_action(urdf_launch)
+    #ld.add_action(urdf_launch)
     ld.add_action(stereo_node)
 
     if LaunchConfigurationEquals('depth_aligned', 'True') and LaunchConfigurationEquals('rectify', 'True'):
